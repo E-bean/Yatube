@@ -1,6 +1,5 @@
 from django.contrib.auth import get_user_model
 from django.db import models
-from pytils.translit import slugify
 
 User = get_user_model()
 
@@ -15,7 +14,7 @@ class Group(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.slug:
-            self.slug = slugify(self.title)[:100]
+            self.slug = self.title[:100]
         super().save(*args, **kwargs)
 
 
