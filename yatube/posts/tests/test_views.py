@@ -29,12 +29,12 @@ class PostsPagesTests(TestCase):
             description='test_description',
         )
         cls.small_gif = (
-             b'\x47\x49\x46\x38\x39\x61\x02\x00'
-             b'\x01\x00\x80\x00\x00\x00\x00\x00'
-             b'\xFF\xFF\xFF\x21\xF9\x04\x00\x00'
-             b'\x00\x00\x00\x2C\x00\x00\x00\x00'
-             b'\x02\x00\x01\x00\x00\x02\x02\x0C'
-             b'\x0A\x00\x3B'
+            b'\x47\x49\x46\x38\x39\x61\x02\x00'
+            b'\x01\x00\x80\x00\x00\x00\x00\x00'
+            b'\xFF\xFF\xFF\x21\xF9\x04\x00\x00'
+            b'\x00\x00\x00\x2C\x00\x00\x00\x00'
+            b'\x02\x00\x01\x00\x00\x02\x02\x0C'
+            b'\x0A\x00\x3B'
         )
         cls.uploaded = SimpleUploadedFile(
             name='small.gif',
@@ -315,8 +315,8 @@ class FollowTest(TestCase):
         """Создание подписки на блогера"""
         follow_count_before = Follow.objects.count()
         self.follower_other.get(reverse(
-                'posts:profile_follow',
-                kwargs={'username': self.main_author.username})
+            'posts:profile_follow',
+            kwargs={'username': self.main_author.username})
         )
         follow_count_after = Follow.objects.count()
         self.assertEqual(follow_count_before + 1, follow_count_after)
@@ -325,8 +325,8 @@ class FollowTest(TestCase):
         """Удаление подписки на блогера"""
         follow_count_before = Follow.objects.count()
         self.follower.get(reverse(
-                'posts:profile_unfollow',
-                kwargs={'username': self.main_author.username})
+            'posts:profile_unfollow',
+            kwargs={'username': self.main_author.username})
         )
         follow_count_after = Follow.objects.count()
         self.assertEqual(follow_count_before, follow_count_after + 1)
@@ -335,8 +335,8 @@ class FollowTest(TestCase):
         """Нельзя подписаться на самого себя"""
         follow_count_before = Follow.objects.count()
         self.bloger.get(reverse(
-                'posts:profile_follow',
-                kwargs={'username': self.main_author.username})
+            'posts:profile_follow',
+            kwargs={'username': self.main_author.username})
         )
         follow_count_after = Follow.objects.count()
         self.assertEqual(follow_count_before, follow_count_after)
