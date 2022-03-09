@@ -12,11 +12,6 @@ class Group(models.Model):
     def __str__(self):
         return self.title
 
-    def save(self, *args, **kwargs):
-        if not self.slug:
-            self.slug = self.title[:100]
-        super().save(*args, **kwargs)
-
 
 class Post(models.Model):
     text = models.TextField(
