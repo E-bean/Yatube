@@ -273,6 +273,10 @@ class CahePageTest(TestCase):
         response = self.authorized_client.get(reverse('posts:index'))
         content_after = response.content
         self.assertTrue(content_before == content_after)
+        cache.clear()
+        response = self.authorized_client.get(reverse('posts:index'))
+        content_after = response.content
+        self.assertTrue(content_before != content_after)
 
 
 class FollowTest(TestCase):
@@ -348,7 +352,7 @@ class FollowTest(TestCase):
             len(response_follower.context["page_obj"]), self.TEST_AMOUNT_POSTS)
         response_follower_other = self.follower_other.get(
             reverse('posts:follow_index',))
-        self.assertEqual(len(response_follower_other.context["page_obj"]), 0)
+        self.assertEqual(len(response_follower_other.context['page_obj']), 0)
         form_data = {
             'text': 'Текст новго поста',
         }

@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load thumbnail %}
 {% block title %}Об авторе проекта{% endblock %}
 {% block content %}
 <div class="container">
@@ -7,8 +8,10 @@
     <p>
       Учиться и делать сайт мне помогает целая команда, кот и двое детей. <br>
       Дети отвлекают, а кот ходит по клавиатуре, очень слаженная команда. <br>
-      Позже добавлю их фотографии. <br>
-      А ещё ссылки и информацию о себе.
+      {% thumbnail 'about/cat.jpg' "960x500" crop="center" upscale=True as im %}
+        <img class="card-img my-2" src="{{ im.url }}">
+      {% endthumbnail %}
+      А вот и кот.
     </p>
   </div>
 </div>

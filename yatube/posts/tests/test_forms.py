@@ -63,7 +63,7 @@ class PostCreateFormTests(TestCase):
         form_data = {
             'text': 'Текст новго поста',
             'group': self.group.id,
-            'image': self.post.image
+            'image': self.small_gif
         }
         response = self.authorized_client.post(
             reverse('posts:post_create'),
