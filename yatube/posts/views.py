@@ -166,3 +166,13 @@ def profile_unfollow(request, username):
     if old_follow.exists():
         old_follow.delete()
     return redirect('posts:profile', username=username)
+
+
+@login_required
+def post_delite(request, post_id):
+    post = get_object_or_404(Post, pk=post_id)
+    if request.user == post.author:
+        post.delete()
+        return redirect('posts:profile', username=request.user)
+    else:
+        return redirect('posts:post_detail', post_id=post_id)
